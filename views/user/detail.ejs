@@ -1,0 +1,35 @@
+<%- include ../layouts/header.ejs %>
+<% if (messages.error) { %>
+<p style="color : red">
+    <%- messages.error %>
+</p>
+<% } %>
+<% if (messages.success) { %>
+<p style="color: green">
+    <%- messages.success %>
+</p>
+<% } %>
+
+<div class="card">
+    <div class="card-header" style="margin-top:50px; width: 500px">
+        Detail Buku
+    </div>
+    <div class="card-body">
+        <% if (data) { %>
+        <% data.forEach(function(user){ %>
+
+        <td>
+            <%= user.judul %>
+        </td> <br>
+        <td>
+            <%= user.stok %>
+        </td> <br>
+        <td>
+            <%= user.harga %>
+        </td> <br>
+        <a class="btn btn-danger" href="/router/tampil/"> Kembali </a>
+        </tr>
+        <% }) %>
+        <% } %>
+    </div>
+</div>

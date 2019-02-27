@@ -1,0 +1,59 @@
+<%- include ../layouts/header.ejs %>
+<% if (messages.error) { %>
+<p style="color : red">
+    <%- messages.error %>
+</p>
+<% } %>
+<% if (messages.success) { %>
+<p style="color: green">
+    <%- messages.success %>
+</p>
+<% } %>
+
+<div class="container">
+    <row class="row mt-3">
+        <div class="col-12">
+            <h1>
+                <%= title %>
+            </h1>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Judul</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Harga</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) { %>
+                    <% data.forEach(function(user) { %>
+                    <tr>
+                        <td>
+                            <%= user.judul %>
+                        </td>
+                        <td>
+                            <%= user.stok %>
+                        </td>
+                        <td>
+                            <%= user.harga %>
+                        </td>
+                        <td>
+                            <div>
+                                <form action="/router/delete/<%= user._id %>" method="post">
+                                    <a class="btn btn-primary" href="/router/edit/<%= user._id %>"> Edit </a>
+                                    <input class="btn btn-primary" type="submit" name="delete" value="Delete" onClick="_method">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <a class="btn btn-primary" href="/router/detail/<%= user._id %>"> Detail </a>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <%  }) %>
+                    <% } %>
+                </tbody>
+            </table>
+
+        </div>
+    </row>
+</div>
